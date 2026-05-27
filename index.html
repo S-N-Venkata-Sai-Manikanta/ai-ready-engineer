@@ -50,6 +50,47 @@ nav{position:sticky;top:0;z-index:100;background:rgba(15,23,42,.97);
 .hs-num{font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:800;color:#f59e0b;line-height:1;}
 .hs-label{font-size:11px;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.1em;margin-top:5px;}
 
+/* FLOW STRIP — Learn AI → Use AI → Build → Automate → Create AI */
+.flow-strip{background:linear-gradient(180deg,#0f172a 0%,#1a1340 100%);
+  padding:48px 24px 56px;position:relative;overflow:hidden;border-top:1px solid rgba(255,255,255,.06);}
+.flow-strip::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(245,158,11,.08) 0%,transparent 70%);pointer-events:none;}
+.flow-strip::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent 0%,rgba(245,158,11,.4) 30%,rgba(167,139,250,.4) 70%,transparent 100%);}
+.flow-eyebrow{position:relative;text-align:center;font-family:'Space Grotesk',sans-serif;
+  font-size:10px;font-weight:800;letter-spacing:.32em;text-transform:uppercase;
+  color:rgba(245,158,11,.85);margin-bottom:24px;z-index:1;}
+.flow-eyebrow::before,.flow-eyebrow::after{content:'';display:inline-block;width:32px;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(245,158,11,.5));vertical-align:middle;margin:0 14px;}
+.flow-eyebrow::after{background:linear-gradient(90deg,rgba(245,158,11,.5),transparent);}
+.flow-row{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;
+  flex-wrap:wrap;gap:6px;max-width:1200px;margin:0 auto;}
+.flow-step{position:relative;padding:14px 6px;text-align:center;}
+.flow-step-num{font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:700;
+  letter-spacing:.2em;color:rgba(255,255,255,.35);margin-bottom:6px;}
+.flow-step-text{font-family:'Space Grotesk',sans-serif;font-size:clamp(20px,3vw,32px);
+  font-weight:800;letter-spacing:-.02em;line-height:1.1;
+  background:linear-gradient(135deg,#fbbf24 0%,#fde68a 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  text-shadow:0 0 24px rgba(245,158,11,.18);}
+.flow-step:nth-child(3) .flow-step-text{background:linear-gradient(135deg,#2dd4bf 0%,#5eead4 100%);
+  -webkit-background-clip:text;background-clip:text;text-shadow:0 0 24px rgba(45,212,191,.18);}
+.flow-step:nth-child(5) .flow-step-text{background:linear-gradient(135deg,#fb923c 0%,#fed7aa 100%);
+  -webkit-background-clip:text;background-clip:text;text-shadow:0 0 24px rgba(251,146,60,.18);}
+.flow-step:nth-child(7) .flow-step-text{background:linear-gradient(135deg,#fbbf24 0%,#fde68a 100%);
+  -webkit-background-clip:text;background-clip:text;text-shadow:0 0 24px rgba(251,191,36,.18);}
+.flow-step:nth-child(9) .flow-step-text{background:linear-gradient(135deg,#a78bfa 0%,#c4b5fd 100%);
+  -webkit-background-clip:text;background-clip:text;text-shadow:0 0 24px rgba(167,139,250,.22);}
+.flow-step-sub{font-size:11px;color:rgba(255,255,255,.45);margin-top:8px;
+  font-weight:500;letter-spacing:.04em;text-transform:uppercase;}
+.flow-arrow{display:inline-flex;align-items:center;justify-content:center;
+  font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:300;
+  color:#f59e0b;opacity:.85;padding:0 8px;animation:flowPulse 2.4s ease-in-out infinite;}
+.flow-arrow:nth-of-type(2){animation-delay:.5s;color:#2dd4bf;}
+.flow-arrow:nth-of-type(3){animation-delay:1s;color:#fb923c;}
+.flow-arrow:nth-of-type(4){animation-delay:1.5s;color:#a78bfa;}
+@keyframes flowPulse{0%,100%{transform:translateX(0);opacity:.55}50%{transform:translateX(4px);opacity:1}}
+
 /* PHASES */
 .phases{display:flex;overflow-x:auto;scrollbar-width:none;background:#fff;border-bottom:1px solid var(--border);}
 .phases::-webkit-scrollbar{display:none;}
@@ -191,6 +232,12 @@ footer{background:#0f172a;color:rgba(255,255,255,.55);padding:36px 48px;
   nav{padding:0 20px;}.hero{padding:64px 24px 56px;}
   main{padding:40px 16px;}
 }
+@media(max-width:900px){
+  .flow-strip{padding:36px 16px 40px;}
+  .flow-row{flex-direction:column;gap:8px;}
+  .flow-arrow{transform:rotate(90deg);padding:4px 0;}
+  .flow-step{padding:8px 0;}
+}
 @media(max-width:600px){
   .module-grid{grid-template-columns:1fr;}
   .tech-grid{grid-template-columns:repeat(2,1fr);}
@@ -208,6 +255,8 @@ footer{background:#0f172a;color:rgba(255,255,255,.55);padding:36px 48px;
   nav{position:static;background:#0f172a;}
   .hero{padding:32px 24px;page-break-after:avoid;}
   .hero h1{font-size:32pt;}
+  .flow-strip{padding:24px 24px;page-break-inside:avoid;page-break-after:avoid;}
+  .flow-arrow{animation:none!important;}
   .phases{page-break-after:avoid;}
   main{padding:24px 16px;max-width:none;}
   .module-grid{grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:24px;page-break-inside:avoid;}
@@ -235,6 +284,41 @@ footer{background:#0f172a;color:rgba(255,255,255,.55);padding:36px 48px;
       <div class="hero-stat"><div class="hs-num">192</div><div class="hs-label">Total Hours</div></div>
       <div class="hero-stat"><div class="hs-num">5</div><div class="hs-label">Phases</div></div>
       <div class="hero-stat"><div class="hs-num">12+</div><div class="hs-label">Projects</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="flow-strip">
+  <div class="flow-eyebrow">The Program Journey</div>
+  <div class="flow-row">
+    <div class="flow-step">
+      <div class="flow-step-num">01</div>
+      <div class="flow-step-text">Learn AI</div>
+      <div class="flow-step-sub">Think · Prompt · Master</div>
+    </div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step">
+      <div class="flow-step-num">02</div>
+      <div class="flow-step-text">Use AI</div>
+      <div class="flow-step-sub">Tools · Workflows · Speed</div>
+    </div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step">
+      <div class="flow-step-num">03</div>
+      <div class="flow-step-text">Build</div>
+      <div class="flow-step-sub">Code · APIs · Products</div>
+    </div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step">
+      <div class="flow-step-num">04</div>
+      <div class="flow-step-text">Automate</div>
+      <div class="flow-step-sub">Agents · Systems · Scale</div>
+    </div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step">
+      <div class="flow-step-num">05</div>
+      <div class="flow-step-text">Create AI</div>
+      <div class="flow-step-sub">LLMs · RAG · Fine-tune</div>
     </div>
   </div>
 </section>
