@@ -57,12 +57,15 @@ nav{position:sticky;top:0;z-index:100;background:rgba(19,78,74,.97);backdrop-fil
 .tools-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
 .tool-card{background:var(--surface);border:1.5px solid var(--border);border-radius:10px;padding:20px;text-align:center;transition:all .2s;}.tool-card:hover{border-color:var(--ph-accent);}
 .tool-icon{font-size:30px;margin-bottom:9px;}.tool-name{font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;color:var(--ink);margin-bottom:4px;}.tool-role{font-size:11px;color:var(--muted);line-height:1.4;}
-.cert-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
-.cert-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);padding:24px;}
-.cert-issuer{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:7px;}
-.cert-name{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:800;color:var(--ink);line-height:1.3;margin-bottom:8px;}
-.cert-desc{font-size:12px;color:var(--muted);line-height:1.55;margin-bottom:14px;}
-.cert-btn{display:inline-flex;align-items:center;gap:7px;background:var(--ph-bg);color:#fff;padding:9px 20px;border-radius:8px;text-decoration:none;font-size:12px;font-weight:700;transition:opacity .2s;}.cert-btn:hover{opacity:.85;}
+/* Trainer Delivery Guide */
+.deliver-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+.deliver-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);padding:22px 24px;border-left:4px solid var(--ph-accent);}
+.deliver-card-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.deliver-num{font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--ph-accent);}
+.deliver-title{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:800;color:var(--ink);margin-bottom:8px;line-height:1.3;}
+.deliver-list{list-style:none;}
+.deliver-list li{font-size:12.5px;color:var(--ink);padding:5px 0;display:flex;align-items:flex-start;gap:8px;line-height:1.55;}
+.deliver-list li::before{content:'▸';color:var(--ph-accent);font-weight:700;flex-shrink:0;font-size:11px;margin-top:2px;}
 .uc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
 .uc-card{background:var(--surface);border:1.5px solid var(--border);border-radius:10px;padding:18px;}
 .uc-icon{font-size:24px;margin-bottom:8px;}.uc-ind{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ph-accent);margin-bottom:4px;}
@@ -78,7 +81,9 @@ footer{background:#0f172a;color:rgba(255,255,255,.55);padding:28px 48px;text-ali
 footer strong{display:block;font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:800;color:#fff;margin-bottom:4px;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 .fade-up{opacity:0;}.fade-up.visible{animation:fadeUp .5s cubic-bezier(.34,1.2,.64,1) forwards;}
-@media(max-width:768px){nav{padding:0 16px;}.hero{padding:48px 20px;}.hero-inner{grid-template-columns:1fr;}.hero-num-bg{display:none;}.content{padding:40px 16px;}.two-col,.topics-grid,.act-grid,.proj-grid,.tools-grid,.cert-grid,.uc-grid,.career-grid{grid-template-columns:1fr;}.next-cta{flex-direction:column;padding:28px 24px;text-align:center;}footer{padding:24px 20px;}}
+@media(max-width:768px){nav{padding:0 16px;}.hero{padding:48px 20px;}.hero-inner{grid-template-columns:1fr;}.hero-num-bg{display:none;}.content{padding:40px 16px;}.two-col,.topics-grid,.act-grid,.proj-grid,.tools-grid,.deliver-grid,.uc-grid,.career-grid{grid-template-columns:1fr;}.next-cta{flex-direction:column;padding:28px 24px;text-align:center;}footer{padding:24px 20px;}}
+/* PRINT — trainer handout */
+@media print{*{-webkit-print-color-adjust:exact;print-color-adjust:exact;}body{background:#fff;font-size:11pt;line-height:1.5;}nav,.fade-up{opacity:1!important;animation:none!important;}nav{position:static;}.hero{padding:28px 24px;page-break-after:avoid;}.hero h1{font-size:28pt;}.content{padding:24px 16px;max-width:none;}.sec{margin-bottom:32px;page-break-inside:avoid;}.timeline,.topics-grid,.act-grid,.proj-grid,.tools-grid,.deliver-grid,.uc-grid,.career-grid,.two-col{page-break-inside:avoid;}.tl-item,.topic-card,.act-card,.proj-card,.tool-card,.deliver-card,.uc-card,.career-card{break-inside:avoid;page-break-inside:avoid;box-shadow:none!important;transform:none!important;}.next-cta{page-break-before:avoid;}a{text-decoration:none;color:inherit;}}
 </style>
 </head>
 <body>
@@ -100,7 +105,7 @@ footer strong{display:block;font-family:'Space Grotesk',sans-serif;font-size:16p
         <div class="stat-pill"><span class="sn">24</span> Hours</div>
         <div class="stat-pill"><span class="sn">8</span> Topics</div>
         <div class="stat-pill"><span class="sn">2</span> Projects</div>
-        <div class="stat-pill"><span class="sn">2</span> Certifications</div>
+        <div class="stat-pill"><span class="sn">8</span> Sessions</div>
       </div>
     </div>
     <div class="hero-num-bg">04</div>
@@ -194,11 +199,50 @@ footer strong{display:block;font-family:'Space Grotesk',sans-serif;font-size:16p
     </div>
   </div>
   <div class="sec fade-up">
-    <div class="sec-tag">Certifications</div>
-    <div class="sec-title">Credentials You'll Earn</div>
-    <div class="cert-grid">
-      <div class="cert-card"><div class="cert-issuer">GitHub</div><div class="cert-name">GitHub Foundations Certification</div><div class="cert-desc">Official GitHub certification covering collaboration, repositories, commits, branches, and GitHub features. The gold standard Git credential.</div><a href="https://resources.github.com/learn/certifications/" target="_blank" class="cert-btn">Get Certified →</a></div>
-      <div class="cert-card"><div class="cert-issuer">GitHub</div><div class="cert-name">GitHub Copilot Certification</div><div class="cert-desc">Official GitHub certification for AI-assisted development with Copilot — covering completions, chat, security and responsible AI usage in coding.</div><a href="https://resources.github.com/learn/certifications/" target="_blank" class="cert-btn">Get Certified →</a></div>
+    <div class="sec-tag">For Trainers</div>
+    <div class="sec-title">Delivery Guide — How to Teach This Module</div>
+    <p class="sec-sub">Recommended teaching flow, classroom techniques and assessment approach for trainers.</p>
+    <div class="deliver-grid">
+      <div class="deliver-card">
+        <div class="deliver-card-head"><span class="deliver-num">01 · Before Class</span></div>
+        <div class="deliver-title">Pre-Class Preparation</div>
+        <ul class="deliver-list">
+          <li>Verify every learner has Git installed and a GitHub account before Session 1</li>
+          <li>Prepare a "broken merge" repository ready for live conflict-resolution drills</li>
+          <li>Pre-create an organisation so learners can practice team PR workflows from Day 2</li>
+          <li>Have GitHub Copilot trial activated on the demo VS Code instance</li>
+        </ul>
+      </div>
+      <div class="deliver-card">
+        <div class="deliver-card-head"><span class="deliver-num">02 · In Class</span></div>
+        <div class="deliver-title">Live Delivery Style</div>
+        <ul class="deliver-list">
+          <li>Teach Git on the terminal first — only show GUI tools after fundamentals stick</li>
+          <li>Run every command live on screen, never hide it behind GUI buttons</li>
+          <li>Every learner makes at least one commit during every session</li>
+          <li>Use the classroom GitHub organisation for real PRs between learners</li>
+        </ul>
+      </div>
+      <div class="deliver-card">
+        <div class="deliver-card-head"><span class="deliver-num">03 · Engagement</span></div>
+        <div class="deliver-title">Student Engagement Tactics</div>
+        <ul class="deliver-list">
+          <li>Run a "Merge Conflict Battle" — learners deliberately create and resolve conflicts in pairs</li>
+          <li>Assign code-review rotations so every learner reviews someone else's PR weekly</li>
+          <li>Track "first contributor" badges for the first 5 open-source PRs</li>
+          <li>Showcase the best GitHub profile READMEs in class each week</li>
+        </ul>
+      </div>
+      <div class="deliver-card">
+        <div class="deliver-card-head"><span class="deliver-num">04 · Assessment</span></div>
+        <div class="deliver-title">Assessment Approach</div>
+        <ul class="deliver-list">
+          <li>Evaluate the learner's public GitHub profile — pinned projects, README quality, commit history</li>
+          <li>Grade PR descriptions and review comments, not just code</li>
+          <li>Run a timed "fix a real open-source bug" challenge for the final assessment</li>
+          <li>Verify learners have made at least one real external open-source contribution</li>
+        </ul>
+      </div>
     </div>
   </div>
   <div class="sec fade-up">

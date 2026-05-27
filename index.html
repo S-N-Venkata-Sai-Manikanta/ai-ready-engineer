@@ -199,20 +199,37 @@ footer{background:#0f172a;color:rgba(255,255,255,.55);padding:36px 48px;
   .hero-stat:last-child{border-bottom:none;}
   footer{flex-direction:column;gap:20px;text-align:center;}
 }
+
+/* PRINT — brochure-style trainer handout */
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  body{background:#fff;font-size:11pt;line-height:1.5;}
+  nav,.fade-up{opacity:1!important;animation:none!important;}
+  nav{position:static;background:#0f172a;}
+  .hero{padding:32px 24px;page-break-after:avoid;}
+  .hero h1{font-size:32pt;}
+  .phases{page-break-after:avoid;}
+  main{padding:24px 16px;max-width:none;}
+  .module-grid{grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:24px;page-break-inside:avoid;}
+  .module-card{break-inside:avoid;page-break-inside:avoid;box-shadow:none!important;transform:none!important;}
+  .journey,.tech-strip{page-break-inside:avoid;margin-bottom:24px;}
+  footer{padding:18px 24px;page-break-before:avoid;}
+  a{text-decoration:none;color:inherit;}
+}
 </style>
 </head>
 <body>
 
 <nav>
   <div class="nav-logo">AI <span>Ready</span> Engineer</div>
-  <div class="nav-pill">Industry-Oriented · 2026 Edition</div>
+  <div class="nav-pill">Trainer Brochure · 2026 Edition</div>
 </nav>
 
 <section class="hero">
   <div class="hero-inner">
     <div class="hero-badge"><span class="hero-badge-dot"></span>9 Modules · 192 Hours · 5 Phases</div>
     <h1>Become an <em>AI-Ready</em><br>Engineer</h1>
-    <p class="hero-sub">A structured, hands-on program designed to turn engineering students into job-ready AI practitioners — from prompt thinking to building real AI systems.</p>
+    <p class="hero-sub">A structured, hands-on program — turning engineering students into job-ready AI practitioners. This brochure is the reference trainers use to learn what content to teach, the topics to cover and exactly how to deliver each module.</p>
     <div class="hero-stats">
       <div class="hero-stat"><div class="hs-num">9</div><div class="hs-label">Modules</div></div>
       <div class="hero-stat"><div class="hs-num">192</div><div class="hs-label">Total Hours</div></div>
@@ -234,7 +251,7 @@ footer{background:#0f172a;color:rgba(255,255,255,.55);padding:36px 48px;
   <div class="section-head fade-up">
     <div class="section-tag">Core Curriculum</div>
     <h2>9 Modules — Click to Explore</h2>
-    <p>Each module includes full syllabus, hands-on projects, tools, certifications & career roadmap. Click any card to open the full module page.</p>
+    <p>Each module includes full syllabus, hands-on projects, tools, a trainer delivery guide and a career roadmap. Click any card to open the full module page.</p>
   </div>
 
   <div class="module-grid">
@@ -579,7 +596,7 @@ footer{background:#0f172a;color:rgba(255,255,255,.55);padding:36px 48px;
 
 <footer>
   <div class="footer-brand">
-    <strong>AI Ready Engineer</strong>
+    <strong>AI Ready Engineer · Trainer Brochure</strong>
     <span>Industry-Oriented · Placement-Focused · 9 Modules · 192 Hours · 5 Phases</span>
   </div>
   <div class="footer-flow">

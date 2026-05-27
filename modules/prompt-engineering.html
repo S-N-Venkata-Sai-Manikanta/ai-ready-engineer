@@ -126,15 +126,15 @@ nav{position:sticky;top:0;z-index:100;background:rgba(15,23,42,.97);backdrop-fil
 .tool-name{font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;color:var(--ink);margin-bottom:4px;}
 .tool-role{font-size:11px;color:var(--muted);line-height:1.4;}
 
-.cert-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
-.cert-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);padding:24px;}
-.cert-issuer{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:7px;}
-.cert-name{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:800;color:var(--ink);line-height:1.3;margin-bottom:8px;}
-.cert-desc{font-size:12px;color:var(--muted);line-height:1.55;margin-bottom:14px;}
-.cert-btn{display:inline-flex;align-items:center;gap:7px;background:var(--ph-bg);color:#fff;
-  padding:9px 20px;border-radius:8px;text-decoration:none;font-size:12px;font-weight:700;
-  letter-spacing:.03em;transition:opacity .2s;}
-.cert-btn:hover{opacity:.85;}
+/* Trainer Delivery Guide */
+.deliver-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+.deliver-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);padding:22px 24px;border-left:4px solid var(--ph-accent);}
+.deliver-card-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.deliver-num{font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--ph-accent);}
+.deliver-title{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:800;color:var(--ink);margin-bottom:8px;line-height:1.3;}
+.deliver-list{list-style:none;}
+.deliver-list li{font-size:12.5px;color:var(--ink);padding:5px 0;display:flex;align-items:flex-start;gap:8px;line-height:1.55;}
+.deliver-list li::before{content:'▸';color:var(--ph-accent);font-weight:700;flex-shrink:0;font-size:11px;margin-top:2px;}
 
 .uc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
 .uc-card{background:var(--surface);border:1.5px solid var(--border);border-radius:10px;padding:18px;}
@@ -170,12 +170,28 @@ footer strong{display:block;font-family:'Space Grotesk',sans-serif;font-size:16p
   nav{padding:0 16px;}.hero{padding:48px 20px;}
   .hero-inner{grid-template-columns:1fr;}.hero-num-bg{display:none;}
   .content{padding:40px 16px;}
-  .two-col,.topics-grid,.act-grid,.proj-grid,.tools-grid,.cert-grid,.uc-grid,.career-grid{grid-template-columns:1fr;}
+  .two-col,.topics-grid,.act-grid,.proj-grid,.tools-grid,.deliver-grid,.uc-grid,.career-grid{grid-template-columns:1fr;}
   .next-cta{flex-direction:column;padding:28px 24px;text-align:center;}
   footer{padding:24px 20px;}
 }
 @media(min-width:769px) and (max-width:1024px){
   .topics-grid,.tools-grid,.uc-grid,.career-grid{grid-template-columns:repeat(2,1fr);}
+}
+
+/* PRINT — trainer handout */
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  body{background:#fff;font-size:11pt;line-height:1.5;}
+  nav,.fade-up{opacity:1!important;animation:none!important;}
+  nav{position:static;}
+  .hero{padding:28px 24px;page-break-after:avoid;}
+  .hero h1{font-size:28pt;}
+  .content{padding:24px 16px;max-width:none;}
+  .sec{margin-bottom:32px;page-break-inside:avoid;}
+  .timeline,.topics-grid,.act-grid,.proj-grid,.tools-grid,.deliver-grid,.uc-grid,.career-grid,.two-col{page-break-inside:avoid;}
+  .tl-item,.topic-card,.act-card,.proj-card,.tool-card,.deliver-card,.uc-card,.career-card{break-inside:avoid;page-break-inside:avoid;box-shadow:none!important;transform:none!important;}
+  .next-cta{page-break-before:avoid;}
+  a{text-decoration:none;color:inherit;}
 }
 </style>
 </head>
@@ -200,7 +216,7 @@ footer strong{display:block;font-family:'Space Grotesk',sans-serif;font-size:16p
         <div class="stat-pill"><span class="sn">18</span> Hours</div>
         <div class="stat-pill"><span class="sn">6</span> Topics</div>
         <div class="stat-pill"><span class="sn">2</span> Projects</div>
-        <div class="stat-pill"><span class="sn">2</span> Certifications</div>
+        <div class="stat-pill"><span class="sn">7</span> Sessions</div>
       </div>
     </div>
     <div class="hero-num-bg">01</div>
@@ -430,22 +446,51 @@ footer strong{display:block;font-family:'Space Grotesk',sans-serif;font-size:16p
     </div>
   </div>
 
-  <!-- CERTIFICATIONS -->
+  <!-- TRAINER'S DELIVERY GUIDE -->
   <div class="sec fade-up">
-    <div class="sec-tag">Certifications</div>
-    <div class="sec-title">Credentials You'll Earn</div>
-    <div class="cert-grid">
-      <div class="cert-card">
-        <div class="cert-issuer">Google · Coursera</div>
-        <div class="cert-name">Google Prompting Essentials</div>
-        <div class="cert-desc">Official Google certification covering prompt design, multi-turn conversations and AI tool usage. Recognized by Google hiring teams worldwide.</div>
-        <a href="https://grow.google/intl/en_in/google-prompting-essentials/" target="_blank" class="cert-btn">Get Certified →</a>
+    <div class="sec-tag">For Trainers</div>
+    <div class="sec-title">Delivery Guide — How to Teach This Module</div>
+    <p class="sec-sub">Recommended teaching flow, classroom techniques and assessment approach for trainers.</p>
+    <div class="deliver-grid">
+      <div class="deliver-card">
+        <div class="deliver-card-head"><span class="deliver-num">01 · Before Class</span></div>
+        <div class="deliver-title">Pre-Class Preparation</div>
+        <ul class="deliver-list">
+          <li>Pre-load ChatGPT, Claude and Gemini accounts on the demo machine</li>
+          <li>Prepare 5 weak prompts and 5 strong prompts as comparison examples</li>
+          <li>Print a one-page COSTAR / RTF framework cheat-sheet for each learner</li>
+          <li>Open the prompt template library starter file ready for live editing</li>
+        </ul>
       </div>
-      <div class="cert-card">
-        <div class="cert-issuer">Anthropic</div>
-        <div class="cert-name">Prompt Engineering Guide Completion</div>
-        <div class="cert-desc">Complete Anthropic's official prompt engineering documentation and exercises covering Claude's capabilities, system prompts, and advanced techniques.</div>
-        <a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview" target="_blank" class="cert-btn">View Guide →</a>
+      <div class="deliver-card">
+        <div class="deliver-card-head"><span class="deliver-num">02 · In Class</span></div>
+        <div class="deliver-title">Live Delivery Style</div>
+        <ul class="deliver-list">
+          <li>Open every session with a live "bad prompt vs good prompt" demo</li>
+          <li>Use a split screen to compare model outputs in real time</li>
+          <li>Pause every 15 minutes for learners to try the technique themselves</li>
+          <li>Type prompts on screen — never paste from slides — so learners see the thinking</li>
+        </ul>
+      </div>
+      <div class="deliver-card">
+        <div class="deliver-card-head"><span class="deliver-num">03 · Engagement</span></div>
+        <div class="deliver-title">Student Engagement Tactics</div>
+        <ul class="deliver-list">
+          <li>Run "Prompt Duels" — two learners compete on the same task, class votes</li>
+          <li>Award a "Prompt of the Day" for the most creative working prompt</li>
+          <li>Encourage learners to break the model — share fascinating failures</li>
+          <li>Maintain a shared classroom prompt library learners keep adding to</li>
+        </ul>
+      </div>
+      <div class="deliver-card">
+        <div class="deliver-card-head"><span class="deliver-num">04 · Assessment</span></div>
+        <div class="deliver-title">Assessment Approach</div>
+        <ul class="deliver-list">
+          <li>Evaluate the 20+ prompt template library for variety and clarity</li>
+          <li>Grade the report-generator project on workflow design, not just output</li>
+          <li>Run a 30-minute live prompting test with a fresh task and 3 attempts</li>
+          <li>Give qualitative feedback on prompt structure, not pass / fail</li>
+        </ul>
       </div>
     </div>
   </div>
