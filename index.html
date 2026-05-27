@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Ready Engineer — Full Curriculum</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#f8fafc;--surface:#fff;--ink:#0f172a;--muted:#64748b;
+  --border:#e2e8f0;--radius:12px;
+}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(15,23,42,.97);
+  backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.08);
+  padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:64px;}
+.nav-logo{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:800;color:#fff;letter-spacing:-.02em;}
+.nav-logo span{color:#f59e0b;}
+.nav-pill{background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.25);color:#fbbf24;
+  font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:5px 14px;border-radius:20px;}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0f172a 0%,#1e1b4b 55%,#0f172a 100%);
+  padding:90px 48px 76px;position:relative;overflow:hidden;text-align:center;}
+.hero::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 55% at 50% 0%,rgba(245,158,11,.14) 0%,transparent 70%);}
+.hero::after{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 40% 40% at 80% 80%,rgba(167,139,250,.1) 0%,transparent 60%);}
+.hero-inner{position:relative;z-index:1;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;
+  background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);
+  color:#fbbf24;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  padding:7px 20px;border-radius:20px;margin-bottom:28px;}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:#f59e0b;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.3)}}
+.hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(38px,6vw,68px);font-weight:800;
+  line-height:1.02;letter-spacing:-.03em;color:#fff;margin-bottom:22px;}
+.hero h1 em{font-style:normal;background:linear-gradient(120deg,#f59e0b,#fde68a);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-size:17px;color:rgba(255,255,255,.65);font-weight:400;max-width:580px;
+  margin:0 auto 44px;line-height:1.75;}
+.hero-stats{display:inline-flex;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  border-radius:14px;overflow:hidden;}
+.hero-stat{padding:18px 36px;border-right:1px solid rgba(255,255,255,.08);text-align:center;}
+.hero-stat:last-child{border-right:none;}
+.hs-num{font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:800;color:#f59e0b;line-height:1;}
+.hs-label{font-size:11px;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.1em;margin-top:5px;}
+
+/* PHASES */
+.phases{display:flex;overflow-x:auto;scrollbar-width:none;background:#fff;border-bottom:1px solid var(--border);}
+.phases::-webkit-scrollbar{display:none;}
+.phase-tab{flex:1;min-width:150px;padding:14px 18px;text-align:center;
+  font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;border-right:1px solid rgba(255,255,255,.1);}
+.phase-tab:last-child{border-right:none;}
+.phase-tab .pn{display:block;font-size:22px;font-weight:800;line-height:1;margin-bottom:5px;}
+.p1{background:#0f172a;color:#fbbf24;}.p2{background:#134e4a;color:#2dd4bf;}
+.p3{background:#7c2d12;color:#fb923c;}.p4{background:#78350f;color:#fbbf24;}
+.p5{background:#1e1b4b;color:#a78bfa;}
+
+/* MAIN */
+main{max-width:1200px;margin:0 auto;padding:56px 24px;}
+.section-head{margin-bottom:36px;}
+.section-head h2{font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:800;
+  letter-spacing:-.02em;margin-bottom:8px;}
+.section-head p{color:var(--muted);font-size:15px;line-height:1.6;}
+.section-tag{font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;color:#f59e0b;margin-bottom:6px;}
+
+/* MODULE GRID */
+.module-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:80px;}
+.module-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);
+  overflow:hidden;cursor:pointer;text-decoration:none;color:inherit;display:block;
+  transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s,border-color .3s;position:relative;}
+.module-card:hover{transform:translateY(-6px);}
+.module-card:active{transform:translateY(-2px);}
+
+.card-header{padding:20px 20px 16px;position:relative;overflow:hidden;}
+.card-header-shimmer{position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.06) 0%,transparent 60%);pointer-events:none;}
+.card-num{font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:700;
+  letter-spacing:.15em;text-transform:uppercase;opacity:.55;margin-bottom:8px;}
+.card-title-row{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:10px;}
+.card-title{font-family:'Space Grotesk',sans-serif;font-size:15.5px;font-weight:800;
+  line-height:1.2;color:#fff;}
+.card-hrs{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.22);
+  border-radius:20px;padding:3px 11px;font-size:10px;font-weight:700;
+  color:#fff;white-space:nowrap;flex-shrink:0;margin-top:2px;}
+.card-phase-pill{display:inline-block;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);
+  border-radius:20px;padding:3px 10px;font-size:9px;font-weight:700;
+  letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.8);}
+.card-body{padding:15px 20px 12px;}
+.card-tagline{font-size:12px;color:var(--muted);font-style:italic;margin-bottom:12px;line-height:1.55;}
+.card-topics{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:2px;}
+.card-topic{font-size:10px;font-weight:600;padding:3px 9px;border-radius:12px;
+  background:rgba(0,0,0,.05);color:var(--ink);letter-spacing:.02em;}
+.card-footer{display:flex;align-items:center;justify-content:space-between;
+  padding:11px 20px;border-top:1px solid var(--border);}
+.card-view{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;}
+.card-arrow{font-size:15px;transition:transform .25s;opacity:.5;}
+.module-card:hover .card-arrow{transform:translateX(5px);opacity:1;}
+
+/* Phase card theme */
+.cp1 .card-header{background:linear-gradient(140deg,#0f172a 0%,#1e293b 100%);}
+.cp1:hover{border-color:#f59e0b;box-shadow:0 24px 48px rgba(245,158,11,.12);}
+.cp1 .card-topic{background:rgba(245,158,11,.1);color:#92650a;}
+.cp1 .card-footer .card-view{color:#92650a;}
+
+.cp2 .card-header{background:linear-gradient(140deg,#134e4a 0%,#0f766e 100%);}
+.cp2:hover{border-color:#2dd4bf;box-shadow:0 24px 48px rgba(45,212,191,.1);}
+.cp2 .card-topic{background:rgba(45,212,191,.1);color:#0f766e;}
+.cp2 .card-footer .card-view{color:#0f766e;}
+
+.cp3 .card-header{background:linear-gradient(140deg,#7c2d12 0%,#9a3412 100%);}
+.cp3:hover{border-color:#fb923c;box-shadow:0 24px 48px rgba(251,146,60,.1);}
+.cp3 .card-topic{background:rgba(251,146,60,.1);color:#9a3412;}
+.cp3 .card-footer .card-view{color:#9a3412;}
+
+.cp4 .card-header{background:linear-gradient(140deg,#78350f 0%,#92400e 100%);}
+.cp4:hover{border-color:#fbbf24;box-shadow:0 24px 48px rgba(251,191,36,.1);}
+.cp4 .card-topic{background:rgba(251,191,36,.1);color:#78350f;}
+.cp4 .card-footer .card-view{color:#78350f;}
+
+.cp5 .card-header{background:linear-gradient(140deg,#1e1b4b 0%,#312e81 100%);}
+.cp5:hover{border-color:#a78bfa;box-shadow:0 24px 48px rgba(167,139,250,.1);}
+.cp5 .card-topic{background:rgba(167,139,250,.1);color:#4338ca;}
+.cp5 .card-footer .card-view{color:#4338ca;}
+
+/* JOURNEY STRIP */
+.journey{background:#0f172a;border-radius:16px;padding:48px;margin-bottom:80px;position:relative;overflow:hidden;}
+.journey::before{content:'';position:absolute;top:-60px;right:-60px;width:240px;height:240px;
+  border-radius:50%;background:radial-gradient(circle,rgba(245,158,11,.15) 0%,transparent 70%);}
+.journey::after{content:'';position:absolute;bottom:-60px;left:30%;width:200px;height:200px;
+  border-radius:50%;background:radial-gradient(circle,rgba(167,139,250,.12) 0%,transparent 70%);}
+.journey-inner{position:relative;z-index:1;}
+.journey-head{text-align:center;margin-bottom:36px;}
+.journey-head h2{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:800;color:#fff;margin-bottom:8px;}
+.journey-head p{color:rgba(255,255,255,.55);font-size:14px;}
+.journey-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative;}
+.journey-steps::before{content:'';position:absolute;top:28px;left:10%;right:10%;height:2px;
+  background:linear-gradient(to right,#f59e0b,#2dd4bf,#fb923c,#fbbf24,#a78bfa);z-index:0;}
+.j-step{text-align:center;position:relative;z-index:1;}
+.j-dot{width:56px;height:56px;border-radius:50%;margin:0 auto 14px;display:flex;
+  align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;
+  font-size:18px;font-weight:800;border:3px solid;}
+.j1 .j-dot{background:#0f172a;border-color:#f59e0b;color:#f59e0b;}
+.j2 .j-dot{background:#0f172a;border-color:#2dd4bf;color:#2dd4bf;}
+.j3 .j-dot{background:#0f172a;border-color:#fb923c;color:#fb923c;}
+.j4 .j-dot{background:#0f172a;border-color:#fbbf24;color:#fbbf24;}
+.j5 .j-dot{background:#0f172a;border-color:#a78bfa;color:#a78bfa;}
+.j-label{font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px;}
+.j1 .j-label{color:#f59e0b;}.j2 .j-label{color:#2dd4bf;}
+.j3 .j-label{color:#fb923c;}.j4 .j-label{color:#fbbf24;}.j5 .j-label{color:#a78bfa;}
+.j-desc{font-size:11px;color:rgba(255,255,255,.45);line-height:1.5;}
+
+/* TECH STRIP */
+.tech-strip{background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:40px;margin-bottom:80px;}
+.tech-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:20px;}
+.tech-group-title{font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:800;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;
+  padding-bottom:8px;border-bottom:2px solid var(--border);}
+.tech-items{display:flex;flex-direction:column;gap:7px;}
+.tech-item{font-size:12px;font-weight:500;color:var(--ink);display:flex;align-items:center;gap:7px;}
+.tech-item::before{content:'·';color:#f59e0b;font-size:16px;font-weight:900;line-height:1;}
+
+/* FOOTER */
+footer{background:#0f172a;color:rgba(255,255,255,.55);padding:36px 48px;
+  display:flex;align-items:center;justify-content:space-between;}
+.footer-brand{font-family:'Space Grotesk',sans-serif;}
+.footer-brand strong{display:block;font-size:18px;font-weight:800;color:#fff;margin-bottom:4px;}
+.footer-brand span{font-size:12px;}
+.footer-flow{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.35);}
+.footer-flow strong{color:rgba(255,255,255,.7);}
+.footer-flow .arr{color:#f59e0b;}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{opacity:0;}.fade-up.visible{animation:fadeUp .55s cubic-bezier(.34,1.2,.64,1) forwards;}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .module-grid{grid-template-columns:repeat(2,1fr);}
+  .tech-grid{grid-template-columns:repeat(3,1fr);}
+  .journey-steps{grid-template-columns:1fr;}
+  .journey-steps::before{display:none;}
+  nav{padding:0 20px;}.hero{padding:64px 24px 56px;}
+  main{padding:40px 16px;}
+}
+@media(max-width:600px){
+  .module-grid{grid-template-columns:1fr;}
+  .tech-grid{grid-template-columns:repeat(2,1fr);}
+  .hero-stats{flex-direction:column;display:flex;}
+  .hero-stat{border-right:none;border-bottom:1px solid rgba(255,255,255,.08);}
+  .hero-stat:last-child{border-bottom:none;}
+  footer{flex-direction:column;gap:20px;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">AI <span>Ready</span> Engineer</div>
+  <div class="nav-pill">Industry-Oriented · 2025 Edition</div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge"><span class="hero-badge-dot"></span>9 Modules · 192 Hours · 5 Phases</div>
+    <h1>Become an <em>AI-Ready</em><br>Engineer</h1>
+    <p class="hero-sub">A structured, hands-on program designed to turn engineering students into job-ready AI practitioners — from prompt thinking to building real AI systems.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hs-num">9</div><div class="hs-label">Modules</div></div>
+      <div class="hero-stat"><div class="hs-num">192</div><div class="hs-label">Total Hours</div></div>
+      <div class="hero-stat"><div class="hs-num">5</div><div class="hs-label">Phases</div></div>
+      <div class="hero-stat"><div class="hs-num">12+</div><div class="hs-label">Projects</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="phases">
+  <div class="phase-tab p1"><span class="pn">01</span>AI Interaction<br>& Productivity</div>
+  <div class="phase-tab p2"><span class="pn">02</span>AI-Assisted<br>Development</div>
+  <div class="phase-tab p3"><span class="pn">03</span>AI<br>Engineering</div>
+  <div class="phase-tab p4"><span class="pn">04</span>Advanced<br>AI Systems</div>
+  <div class="phase-tab p5"><span class="pn">05</span>Advanced AI<br>Engineering</div>
+</div>
+
+<main>
+  <div class="section-head fade-up">
+    <div class="section-tag">Core Curriculum</div>
+    <h2>9 Modules — Click to Explore</h2>
+    <p>Each module includes full syllabus, hands-on projects, tools, certifications & career roadmap. Click any card to open the full module page.</p>
+  </div>
+
+  <div class="module-grid">
+
+    <a href="modules/prompt-engineering.html" class="module-card cp1 fade-up">
+      <div class="card-header">
+        <div class="card-header-shimmer"></div>
+        <div class="card-num">Module 01</div>
+        <div class="card-title-row">
+          <div class="card-title">Prompt Engineering</div>
+          <div class="card-hrs">18 Hrs</div>
+        </div>
+        <div class="card-phase-pill">Phase 1 · AI Interaction</div>
+      </div>
+      <div class="card-body">
+        <p class="card-tagline">Foundation of everything — learn to think with AI.</p>
+        <div class="card-topics">
+          <span class="card-topic">Zero-shot prompting</span>
+          <span class="card-topic">Few-shot prompting</span>
+          <span class="card-topic">Role prompting</span>
+          <span class="card-topic">Prompt optimization</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="card-view">View Full Module</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a href="modules/ai-tools.html" class="module-card cp1 fade-up">
+      <div class="card-header">
+        <div class="card-header-shimmer"></div>
+        <div class="card-num">Module 02</div>
+        <div class="card-title-row">
+          <div class="card-title">AI Tools</div>
+          <div class="card-hrs">18 Hrs</div>
+        </div>
+        <div class="card-phase-pill">Phase 1 · AI Interaction</div>
+      </div>
+      <div class="card-body">
+        <p class="card-tagline">Apply prompting in real-world tools. Creates immediate excitement.</p>
+        <div class="card-topics">
+          <span class="card-topic">ChatGPT</span>
+          <span class="card-topic">Claude</span>
+          <span class="card-topic">Gemini</span>
+          <span class="card-topic">NotebookLM</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="card-view">View Full Module</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a href="modules/vibe-coding.html" class="module-card cp2 fade-up">
+      <div class="card-header">
+        <div class="card-header-shimmer"></div>
+        <div class="card-num">Module 03</div>
+        <div class="card-title-row">
+          <div class="card-title">Vibe Coding</div>
+          <div class="card-hrs">18 Hrs</div>
+        </div>
+        <div class="card-phase-pill">Phase 2 · AI-Assisted Dev</div>
+      </div>
+      <div class="card-body">
+        <p class="card-tagline">Start building real things fast using AI-powered coding tools.</p>
+        <div class="card-topics">
+          <span class="card-topic">Cursor AI</span>
+          <span class="card-topic">Lovable</span>
+          <span class="card-topic">Bolt</span>
+          <span class="card-topic">MVP Building</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="card-view">View Full Module</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a href="modules/git-github.html" class="module-card cp2 fade-up">
+      <div class="card-header">
+        <div class="card-header-shimmer"></div>
+        <div class="card-num">Module 04</div>
+        <div class="card-title-row">
+          <div class="card-title">Git, GitHub & Copilot</div>
+          <div class="card-hrs">24 Hrs</div>
+        </div>
+        <div class="card-phase-pill">Phase 2 · AI-Assisted Dev</div>
+      </div>
+      <div class="card-body">
+        <p class="card-tagline">Industry collaboration workflows — version control meets AI coding.</p>
+        <div class="card-topics">
+          <span class="card-topic">Git basics</span>
+          <span class="card-topic">GitHub workflows</span>
+          <span class="card-topic">GitHub Copilot</span>
+          <span class="card-topic">Pull Requests</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="card-view">View Full Module</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a href="modules/api-creation.html" class="module-card cp2 fade-up">
+      <div class="card-header">
+        <div class="card-header-shimmer"></div>
+        <div class="card-num">Module 05</div>
+        <div class="card-title-row">
+          <div class="card-title">API Creation & Postman</div>
+          <div class="card-hrs">18 Hrs</div>
+        </div>
+        <div class="card-phase-pill">Phase 2 · AI-Assisted Dev</div>
+      </div>
+      <div class="card-body">
+        <p class="card-tagline">Technical foundation — understand APIs before building AI-powered ones.</p>
+        <div class="card-topics">
+          <span class="card-topic">REST APIs</span>
+          <span class="card-topic">JSON basics</span>
+          <span class="card-topic">Postman</span>
+          <span class="card-topic">Backend basics</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="card-view">View Full Module</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a href="modules/ai-api-integration.html" class="module-card cp3 fade-up">
+      <div class="card-header">
+        <div class="card-header-shimmer"></div>
+        <div class="card-num">Module 06</div>
+        <div class="card-title-row">
+          <div class="card-title">AI API Integration</div>
+          <div class="card-hrs">24 Hrs</div>
+        </div>
+        <div class="card-phase-pill">Phase 3 · AI Engineering</div>
+      </div>
+      <div class="card-body">
+        <p class="card-tagline">Cross from "using AI" to "building AI systems." The real engineer stage.</p>
+        <div class="card-topics">
+          <span class="card-topic">OpenAI API</span>
+          <span class="card-topic">Claude API</span>
+          <span class="card-topic">Gemini API</span>
+          <span class="card-topic">AI Chatbots</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="card-view">View Full Module</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a href="modules/ai-agents.html" class="module-card cp4 fade-up">
+      <div class="card-header">
+        <div class="card-header-shimmer"></div>
+        <div class="card-num">Module 07</div>
+        <div class="card-title-row">
+          <div class="card-title">AI Agents</div>
+          <div class="card-hrs">24 Hrs</div>
+        </div>
+        <div class="card-phase-pill">Phase 4 · Advanced AI Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="card-tagline">Advanced automation — combines all prior knowledge into autonomous systems.</p>
+        <div class="card-topics">
+          <span class="card-topic">Single-agent</span>
+          <span class="card-topic">Multi-agent</span>
+          <span class="card-topic">Tool Calling</span>
+          <span class="card-topic">MCP basics</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="card-view">View Full Module</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a href="modules/ai-security.html" class="module-card cp4 fade-up">
+      <div class="card-header">
+        <div class="card-header-shimmer"></div>
+        <div class="card-num">Module 08</div>
+        <div class="card-title-row">
+          <div class="card-title">AI Security</div>
+          <div class="card-hrs">12 Hrs</div>
+        </div>
+        <div class="card-phase-pill">Phase 4 · Advanced AI Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="card-tagline">Industry-ready professional AI — understand threats & govern responsibly.</p>
+        <div class="card-topics">
+          <span class="card-topic">Prompt Injection</span>
+          <span class="card-topic">Data Privacy</span>
+          <span class="card-topic">Responsible AI</span>
+          <span class="card-topic">API Security</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="card-view">View Full Module</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a href="modules/llm-creation.html" class="module-card cp5 fade-up">
+      <div class="card-header">
+        <div class="card-header-shimmer"></div>
+        <div class="card-num">Module 09</div>
+        <div class="card-title-row">
+          <div class="card-title">LLM Creation & Foundations</div>
+          <div class="card-hrs">36 Hrs</div>
+        </div>
+        <div class="card-phase-pill">Phase 5 · Advanced AI Engineering</div>
+      </div>
+      <div class="card-body">
+        <p class="card-tagline">Final advanced stage — understand how AI is actually built from scratch.</p>
+        <div class="card-topics">
+          <span class="card-topic">Transformers</span>
+          <span class="card-topic">Fine-tuning</span>
+          <span class="card-topic">RAG basics</span>
+          <span class="card-topic">Vector DBs</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="card-view">View Full Module</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- LEARNING JOURNEY -->
+  <div class="journey fade-up">
+    <div class="journey-inner">
+      <div class="journey-head">
+        <h2>Your Learning Journey</h2>
+        <p>5 progressive phases from beginner AI user to advanced AI engineer</p>
+      </div>
+      <div class="journey-steps">
+        <div class="j-step j1">
+          <div class="j-dot">01</div>
+          <div class="j-label">AI Interaction</div>
+          <div class="j-desc">Learn to think<br>& prompt with AI</div>
+        </div>
+        <div class="j-step j2">
+          <div class="j-dot">02</div>
+          <div class="j-label">AI Dev</div>
+          <div class="j-desc">Build apps &<br>collaborate with Git</div>
+        </div>
+        <div class="j-step j3">
+          <div class="j-dot">03</div>
+          <div class="j-label">AI Engineering</div>
+          <div class="j-desc">Integrate AI APIs<br>into real products</div>
+        </div>
+        <div class="j-step j4">
+          <div class="j-dot">04</div>
+          <div class="j-label">Advanced AI</div>
+          <div class="j-desc">Build agents &<br>secure AI systems</div>
+        </div>
+        <div class="j-step j5">
+          <div class="j-dot">05</div>
+          <div class="j-label">LLM Creation</div>
+          <div class="j-desc">Build & fine-tune<br>AI models from scratch</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TECH STACK -->
+  <div class="section-head fade-up">
+    <div class="section-tag">Program Tech Stack</div>
+    <h2>Tools & Technologies</h2>
+  </div>
+  <div class="tech-strip fade-up">
+    <div class="tech-grid">
+      <div>
+        <div class="tech-group-title">AI Tools</div>
+        <div class="tech-items">
+          <div class="tech-item">ChatGPT</div>
+          <div class="tech-item">Claude</div>
+          <div class="tech-item">Gemini</div>
+          <div class="tech-item">Perplexity</div>
+          <div class="tech-item">NotebookLM</div>
+          <div class="tech-item">Gamma</div>
+        </div>
+      </div>
+      <div>
+        <div class="tech-group-title">Vibe Coding</div>
+        <div class="tech-items">
+          <div class="tech-item">Cursor AI</div>
+          <div class="tech-item">Bolt</div>
+          <div class="tech-item">Lovable</div>
+          <div class="tech-item">Replit AI</div>
+          <div class="tech-item">v0.dev</div>
+        </div>
+      </div>
+      <div>
+        <div class="tech-group-title">Dev & APIs</div>
+        <div class="tech-items">
+          <div class="tech-item">Python / JS</div>
+          <div class="tech-item">Postman</div>
+          <div class="tech-item">OpenAI API</div>
+          <div class="tech-item">Claude API</div>
+          <div class="tech-item">Gemini API</div>
+          <div class="tech-item">REST APIs</div>
+        </div>
+      </div>
+      <div>
+        <div class="tech-group-title">Version Control</div>
+        <div class="tech-items">
+          <div class="tech-item">Git</div>
+          <div class="tech-item">GitHub</div>
+          <div class="tech-item">GitHub Copilot</div>
+          <div class="tech-item">VS Code</div>
+        </div>
+      </div>
+      <div>
+        <div class="tech-group-title">AI / ML Stack</div>
+        <div class="tech-items">
+          <div class="tech-item">LangChain</div>
+          <div class="tech-item">LlamaIndex</div>
+          <div class="tech-item">HuggingFace</div>
+          <div class="tech-item">Ollama</div>
+          <div class="tech-item">Pinecone</div>
+          <div class="tech-item">ChromaDB</div>
+        </div>
+      </div>
+      <div>
+        <div class="tech-group-title">Deployment</div>
+        <div class="tech-items">
+          <div class="tech-item">Vercel</div>
+          <div class="tech-item">Netlify</div>
+          <div class="tech-item">Render</div>
+          <div class="tech-item">Streamlit</div>
+          <div class="tech-item">Docker basics</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-brand">
+    <strong>AI Ready Engineer</strong>
+    <span>Industry-Oriented · Placement-Focused · 9 Modules · 192 Hours · 5 Phases</span>
+  </div>
+  <div class="footer-flow">
+    <strong>Learn AI</strong><span class="arr">→</span>
+    <strong>Use AI</strong><span class="arr">→</span>
+    <strong>Build</strong><span class="arr">→</span>
+    <strong>Automate</strong><span class="arr">→</span>
+    <strong>Create AI</strong>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 90);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

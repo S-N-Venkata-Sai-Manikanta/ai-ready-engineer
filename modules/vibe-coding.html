@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 03 — Vibe Coding | AI Ready Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--ph-bg:#134e4a;--ph-mid:#0f766e;--ph-accent:#2dd4bf;--ph-muted:rgba(255,255,255,.65);--tag-bg:#ccfbf1;--tag-color:#0f766e;--bg:#f8fafc;--surface:#fff;--ink:#0f172a;--muted:#64748b;--border:#e2e8f0;--radius:12px;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;}
+nav{position:sticky;top:0;z-index:100;background:rgba(19,78,74,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.1);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:64px;}
+.back-btn{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.75);text-decoration:none;font-size:13px;font-weight:600;padding:8px 16px;border-radius:8px;border:1px solid rgba(255,255,255,.2);transition:all .2s;}
+.back-btn:hover{background:rgba(255,255,255,.12);color:#fff;}
+.nav-mod{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:#fff;display:flex;align-items:center;gap:8px;}
+.nav-dot{width:8px;height:8px;border-radius:50%;background:var(--ph-accent);}
+.hero{background:linear-gradient(135deg,var(--ph-bg) 0%,var(--ph-mid) 60%,var(--ph-bg) 100%);padding:72px 48px 64px;position:relative;overflow:hidden;}
+.hero::after{content:'';position:absolute;top:-80px;right:5%;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(45,212,191,.2) 0%,transparent 70%);}
+.hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;position:relative;z-index:1;}
+.badge-row{display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap;}
+.mod-num-badge{font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.4);}
+.phase-badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:4px 14px;font-size:10px;font-weight:700;color:#fff;letter-spacing:.07em;text-transform:uppercase;}
+.hero-icon{font-size:40px;margin-bottom:12px;}
+.hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(32px,5vw,52px);font-weight:800;color:#fff;line-height:1.05;letter-spacing:-.02em;margin-bottom:16px;}
+.hero h1 span{color:var(--ph-accent);}
+.hero-desc{font-size:16px;color:var(--ph-muted);max-width:580px;line-height:1.75;margin-bottom:28px;}
+.stats-row{display:flex;gap:8px;flex-wrap:wrap;}
+.stat-pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:10px 20px;font-size:12px;font-weight:700;color:#fff;display:flex;align-items:center;gap:8px;}
+.stat-pill .sn{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:800;color:var(--ph-accent);}
+.hero-num-bg{font-family:'Space Grotesk',sans-serif;font-size:130px;font-weight:800;color:rgba(255,255,255,.05);line-height:1;letter-spacing:-.04em;user-select:none;}
+.content{max-width:1100px;margin:0 auto;padding:60px 24px;}
+.sec{margin-bottom:64px;}
+.sec-tag{font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ph-accent);margin-bottom:8px;}
+.sec-title{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:800;letter-spacing:-.02em;color:var(--ink);margin-bottom:8px;}
+.sec-sub{font-size:14px;color:var(--muted);margin-bottom:28px;line-height:1.6;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.info-box{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);padding:28px;}
+.info-box-title{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:800;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.info-box-title::before{content:'';display:inline-block;width:4px;height:18px;border-radius:2px;background:var(--ph-accent);flex-shrink:0;}
+.bullet-list{list-style:none;}
+.bullet-list li{font-size:13.5px;padding:9px 0;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:10px;line-height:1.55;}
+.bullet-list li:last-child{border-bottom:none;}
+.bullet-list li::before{content:'→';color:var(--ph-accent);font-weight:700;flex-shrink:0;margin-top:1px;}
+.check-list{list-style:none;}
+.check-list li{font-size:13.5px;padding:9px 0;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:10px;line-height:1.55;}
+.check-list li:last-child{border-bottom:none;}
+.check-list li::before{content:'✓';color:var(--ph-accent);font-weight:800;font-size:13px;flex-shrink:0;margin-top:1px;}
+.timeline{position:relative;padding-left:36px;}
+.timeline::before{content:'';position:absolute;left:12px;top:8px;bottom:8px;width:2px;background:linear-gradient(to bottom,var(--ph-accent) 0%,rgba(45,212,191,.1) 100%);}
+.tl-item{position:relative;margin-bottom:16px;}
+.tl-dot{position:absolute;left:-32px;top:12px;width:16px;height:16px;border-radius:50%;background:var(--ph-accent);border:3px solid var(--bg);}
+.tl-card{background:var(--surface);border:1.5px solid var(--border);border-radius:10px;padding:18px 20px;transition:border-color .2s,box-shadow .2s;}
+.tl-card:hover{border-color:var(--ph-accent);box-shadow:0 4px 20px rgba(45,212,191,.1);}
+.tl-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ph-accent);margin-bottom:5px;}
+.tl-title{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--ink);margin-bottom:5px;}
+.tl-desc{font-size:12px;color:var(--muted);line-height:1.55;}
+.tl-hrs{display:inline-block;background:var(--tag-bg);color:var(--tag-color);font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;margin-top:7px;}
+.topics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.topic-card{background:var(--surface);border:1.5px solid var(--border);border-radius:10px;padding:18px;transition:all .2s;}
+.topic-card:hover{border-color:var(--ph-accent);box-shadow:0 4px 20px rgba(45,212,191,.08);transform:translateY(-2px);}
+.tc-icon{font-size:24px;margin-bottom:9px;}
+.tc-name{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;color:var(--ink);margin-bottom:5px;}
+.tc-desc{font-size:11.5px;color:var(--muted);line-height:1.5;}
+.act-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+.act-card{background:var(--surface);border:1.5px solid var(--border);border-left:4px solid var(--ph-accent);border-radius:10px;padding:18px 20px;}
+.act-num{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ph-accent);margin-bottom:6px;}
+.act-title{font-family:'Space Grotesk',sans-serif;font-size:13.5px;font-weight:700;color:var(--ink);margin-bottom:5px;}
+.act-desc{font-size:12px;color:var(--muted);line-height:1.5;}
+.proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.proj-card{background:linear-gradient(135deg,var(--ph-bg),var(--ph-mid));border-radius:var(--radius);padding:26px;color:#fff;position:relative;overflow:hidden;}
+.proj-card::after{content:'';position:absolute;bottom:-24px;right:-24px;width:90px;height:90px;border-radius:50%;background:rgba(255,255,255,.05);}
+.pj-num{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ph-accent);margin-bottom:10px;}
+.pj-title{font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:800;margin-bottom:9px;line-height:1.2;}
+.pj-desc{font-size:12px;color:rgba(255,255,255,.65);line-height:1.65;margin-bottom:14px;}
+.pj-tags{display:flex;gap:6px;flex-wrap:wrap;}
+.pj-tag{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:4px;padding:3px 9px;font-size:10px;font-weight:600;color:#fff;}
+.tools-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.tool-card{background:var(--surface);border:1.5px solid var(--border);border-radius:10px;padding:20px;text-align:center;transition:all .2s;}
+.tool-card:hover{border-color:var(--ph-accent);box-shadow:0 4px 20px rgba(45,212,191,.08);}
+.tool-icon{font-size:30px;margin-bottom:9px;}
+.tool-name{font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;color:var(--ink);margin-bottom:4px;}
+.tool-role{font-size:11px;color:var(--muted);line-height:1.4;}
+.cert-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.cert-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);padding:24px;}
+.cert-issuer{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:7px;}
+.cert-name{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:800;color:var(--ink);line-height:1.3;margin-bottom:8px;}
+.cert-desc{font-size:12px;color:var(--muted);line-height:1.55;margin-bottom:14px;}
+.cert-btn{display:inline-flex;align-items:center;gap:7px;background:var(--ph-bg);color:#fff;padding:9px 20px;border-radius:8px;text-decoration:none;font-size:12px;font-weight:700;transition:opacity .2s;}
+.cert-btn:hover{opacity:.85;}
+.uc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.uc-card{background:var(--surface);border:1.5px solid var(--border);border-radius:10px;padding:18px;}
+.uc-icon{font-size:24px;margin-bottom:8px;}
+.uc-ind{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ph-accent);margin-bottom:4px;}
+.uc-title{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;color:var(--ink);margin-bottom:5px;}
+.uc-desc{font-size:11.5px;color:var(--muted);line-height:1.5;}
+.career-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.career-card{background:var(--tag-bg);border:1.5px solid rgba(45,212,191,.25);border-radius:10px;padding:20px;text-align:center;}
+.cc-icon{font-size:28px;margin-bottom:8px;}
+.cc-title{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:var(--ink);margin-bottom:5px;}
+.cc-sal{font-size:11px;color:var(--tag-color);font-weight:700;}
+.next-cta{background:linear-gradient(135deg,var(--ph-bg),var(--ph-mid));border-radius:16px;padding:40px 48px;display:flex;align-items:center;justify-content:space-between;gap:24px;}
+.next-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ph-accent);margin-bottom:10px;}
+.next-title{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:800;color:#fff;line-height:1.2;}
+.next-btn{display:inline-flex;align-items:center;gap:8px;background:var(--ph-accent);color:var(--ph-bg);padding:13px 30px;border-radius:10px;text-decoration:none;font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:800;white-space:nowrap;transition:opacity .2s;}
+.next-btn:hover{opacity:.88;}
+footer{background:#0f172a;color:rgba(255,255,255,.55);padding:28px 48px;text-align:center;font-size:13px;}
+footer strong{display:block;font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:800;color:#fff;margin-bottom:4px;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{opacity:0;}.fade-up.visible{animation:fadeUp .5s cubic-bezier(.34,1.2,.64,1) forwards;}
+@media(max-width:768px){nav{padding:0 16px;}.hero{padding:48px 20px;}.hero-inner{grid-template-columns:1fr;}.hero-num-bg{display:none;}.content{padding:40px 16px;}.two-col,.topics-grid,.act-grid,.proj-grid,.tools-grid,.cert-grid,.uc-grid,.career-grid{grid-template-columns:1fr;}.next-cta{flex-direction:column;padding:28px 24px;text-align:center;}footer{padding:24px 20px;}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="back-btn">← Back to Curriculum</a>
+  <div class="nav-mod"><span class="nav-dot"></span>Module 03 — Vibe Coding</div>
+</nav>
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="badge-row">
+        <span class="mod-num-badge">Module 03 of 09</span>
+        <span class="phase-badge">Phase 2 · AI-Assisted Development</span>
+      </div>
+      <div class="hero-icon">⚡</div>
+      <h1>Vibe <span>Coding</span></h1>
+      <p class="hero-desc">Build complete web applications using AI-assisted coding tools — no traditional programming barriers. Go from idea to deployed product using the most exciting AI dev tools available.</p>
+      <div class="stats-row">
+        <div class="stat-pill"><span class="sn">18</span> Hours</div>
+        <div class="stat-pill"><span class="sn">5</span> Tools</div>
+        <div class="stat-pill"><span class="sn">3</span> Projects</div>
+        <div class="stat-pill"><span class="sn">2</span> Certifications</div>
+      </div>
+    </div>
+    <div class="hero-num-bg">03</div>
+  </div>
+</section>
+<div class="content">
+  <div class="sec fade-up">
+    <div class="sec-tag">Module Overview</div>
+    <div class="sec-title">Why This Module Matters</div>
+    <div class="two-col">
+      <div class="info-box">
+        <div class="info-box-title">Why You Need This</div>
+        <ul class="bullet-list">
+          <li>Vibe coding tools let anyone build real software — the biggest shift in software development in decades</li>
+          <li>The gap between idea and working prototype has collapsed from weeks to hours</li>
+          <li>Every engineer and non-engineer is expected to ship prototypes quickly in modern companies</li>
+          <li>These tools are now used by top startups to build MVPs before raising funding</li>
+          <li>This is the most exciting module — students go from zero to working app in the first session</li>
+        </ul>
+      </div>
+      <div class="info-box">
+        <div class="info-box-title">Learning Outcomes</div>
+        <ul class="check-list">
+          <li>Build full-stack web apps using Cursor AI and Lovable</li>
+          <li>Generate and deploy landing pages with Bolt and v0.dev</li>
+          <li>Debug and fix code using AI assistance</li>
+          <li>Build and deploy a complete MVP from scratch</li>
+          <li>Understand when to use which vibe coding tool</li>
+          <li>Integrate AI debugging into your development workflow</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="sec fade-up">
+    <div class="sec-tag">Course Structure</div>
+    <div class="sec-title">Full Syllabus</div>
+    <p class="sec-sub">18 hours of hands-on building across 6 sessions</p>
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-card"><div class="tl-label">Session 1</div><div class="tl-title">Introduction to Vibe Coding — The New Paradigm</div><div class="tl-desc">What is vibe coding? Overview of all AI coding tools. Mindset shift from traditional coding to AI-assisted development.</div><div class="tl-hrs">2 Hours</div></div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-card"><div class="tl-label">Session 2</div><div class="tl-title">Cursor AI — AI-First Code Editor</div><div class="tl-desc">Set up Cursor AI. Use Ctrl+K, Ctrl+L and Composer mode. Build a fully functional Python/JS project using AI inline assistance.</div><div class="tl-hrs">4 Hours</div></div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-card"><div class="tl-label">Session 3</div><div class="tl-title">Lovable & Bolt — Full Apps from Prompts</div><div class="tl-desc">Describe your app idea and watch it build. Generate React/Next.js apps, add features with conversation and deploy in one click.</div><div class="tl-hrs">4 Hours</div></div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-card"><div class="tl-label">Session 4</div><div class="tl-title">Replit AI & v0.dev — Components & Collaboration</div><div class="tl-desc">Build and share in the browser. Use v0.dev for React component generation. Collaborate on code without local setup.</div><div class="tl-hrs">3 Hours</div></div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-card"><div class="tl-label">Session 5</div><div class="tl-title">AI Debugging & Frontend Generation</div><div class="tl-desc">Systematic AI debugging techniques. Generate responsive UIs from mockups. Fix errors through conversation instead of Stack Overflow.</div><div class="tl-hrs">3 Hours</div></div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-card"><div class="tl-label">Session 6</div><div class="tl-title">MVP Building & Deployment Workshop</div><div class="tl-desc">End-to-end MVP project. Build, iterate and deploy a real product using vibe coding tools. Publish to Vercel or Netlify.</div><div class="tl-hrs">2 Hours</div></div></div>
+    </div>
+  </div>
+  <div class="sec fade-up">
+    <div class="sec-tag">Topics Covered</div>
+    <div class="sec-title">Core Topics</div>
+    <div class="topics-grid">
+      <div class="topic-card"><div class="tc-icon">⌨️</div><div class="tc-name">Cursor AI</div><div class="tc-desc">AI-native code editor with inline AI, chat mode, and full codebase awareness for rapid development.</div></div>
+      <div class="topic-card"><div class="tc-icon">💜</div><div class="tc-name">Lovable</div><div class="tc-desc">Full-stack app generation from natural language. Build React apps with backend, auth and database.</div></div>
+      <div class="topic-card"><div class="tc-icon">⚡</div><div class="tc-name">Bolt</div><div class="tc-desc">Instant full-stack app prototypes in the browser. Perfect for rapid MVP validation and demos.</div></div>
+      <div class="topic-card"><div class="tc-icon">🔵</div><div class="tc-name">Replit AI</div><div class="tc-desc">Browser-based AI coding with zero setup. Build, run and share apps instantly in any language.</div></div>
+      <div class="topic-card"><div class="tc-icon">🧩</div><div class="tc-name">MVP Building</div><div class="tc-desc">Define scope, build core features first, iterate fast. Ship a working product in a single day.</div></div>
+      <div class="topic-card"><div class="tc-icon">🐛</div><div class="tc-name">AI Debugging</div><div class="tc-desc">Paste errors into AI, understand root causes, fix systematically. Never spend hours debugging alone again.</div></div>
+    </div>
+  </div>
+  <div class="sec fade-up">
+    <div class="sec-tag">Hands-On Learning</div>
+    <div class="sec-title">Practical Activities</div>
+    <div class="act-grid">
+      <div class="act-card"><div class="act-num">Activity 01</div><div class="act-title">Zero-to-App in 30 Minutes</div><div class="act-desc">Use Bolt or Lovable to build a complete web app from a 3-sentence description. Deploy it live and share the URL.</div></div>
+      <div class="act-card"><div class="act-num">Activity 02</div><div class="act-title">Cursor AI Live Coding</div><div class="act-desc">Build a Python/FastAPI backend in Cursor using only AI suggestions and Composer mode. No typing code manually.</div></div>
+      <div class="act-card"><div class="act-num">Activity 03</div><div class="act-title">Broken Code Debugging Sprint</div><div class="act-desc">Fix 5 intentionally broken code snippets using only AI assistance. Document your debugging conversation approach.</div></div>
+      <div class="act-card"><div class="act-num">Activity 04</div><div class="act-title">Landing Page Generation</div><div class="act-desc">Use v0.dev to generate 3 different landing page designs for the same product. Pick the best and deploy it.</div></div>
+    </div>
+  </div>
+  <div class="sec fade-up">
+    <div class="sec-tag">Mini Projects</div>
+    <div class="sec-title">What You'll Build</div>
+    <div class="proj-grid">
+      <div class="proj-card"><div class="pj-num">Project 01</div><div class="pj-title">SaaS Landing Page</div><div class="pj-desc">Build a fully responsive SaaS product landing page with hero, features, pricing and CTA sections. Generated with v0.dev and deployed to Vercel in under an hour.</div><div class="pj-tags"><span class="pj-tag">v0.dev</span><span class="pj-tag">React</span><span class="pj-tag">Vercel</span><span class="pj-tag">Tailwind</span></div></div>
+      <div class="proj-card"><div class="pj-num">Project 02</div><div class="pj-title">Full-Stack MVP Web App</div><div class="pj-desc">Build a complete, functional web application with authentication, database and core features using Lovable or Bolt. Deploy publicly with a custom URL.</div><div class="pj-tags"><span class="pj-tag">Lovable</span><span class="pj-tag">Bolt</span><span class="pj-tag">Supabase</span><span class="pj-tag">Netlify</span></div></div>
+    </div>
+  </div>
+  <div class="sec fade-up">
+    <div class="sec-tag">Tools & Platforms</div>
+    <div class="sec-title">What You'll Use</div>
+    <div class="tools-grid">
+      <div class="tool-card"><div class="tool-icon">⌨️</div><div class="tool-name">Cursor AI</div><div class="tool-role">AI-first code editor for full project development</div></div>
+      <div class="tool-card"><div class="tool-icon">💜</div><div class="tool-name">Lovable</div><div class="tool-role">Full-stack app generator from natural language</div></div>
+      <div class="tool-card"><div class="tool-icon">⚡</div><div class="tool-name">Bolt</div><div class="tool-role">Instant full-stack prototyping in browser</div></div>
+      <div class="tool-card"><div class="tool-icon">🔵</div><div class="tool-name">Replit AI</div><div class="tool-role">Zero-setup cloud coding environment</div></div>
+      <div class="tool-card"><div class="tool-icon">🧩</div><div class="tool-name">v0.dev</div><div class="tool-role">AI-generated React UI components by Vercel</div></div>
+      <div class="tool-card"><div class="tool-icon">🚀</div><div class="tool-name">Vercel / Netlify</div><div class="tool-role">One-click deployment for frontend projects</div></div>
+      <div class="tool-card"><div class="tool-icon">🗄️</div><div class="tool-name">Supabase</div><div class="tool-role">Open-source Firebase alternative for database & auth</div></div>
+      <div class="tool-card"><div class="tool-icon">🎨</div><div class="tool-name">Tailwind CSS</div><div class="tool-role">Utility-first CSS framework used by all vibe tools</div></div>
+    </div>
+  </div>
+  <div class="sec fade-up">
+    <div class="sec-tag">Certifications</div>
+    <div class="sec-title">Credentials You'll Earn</div>
+    <div class="cert-grid">
+      <div class="cert-card"><div class="cert-issuer">freeCodeCamp</div><div class="cert-name">Responsive Web Design Certification</div><div class="cert-desc">Industry-recognized certification covering HTML, CSS and responsive design fundamentals. Pairs perfectly with your vibe coding skills.</div><a href="https://www.freecodecamp.org/learn/2022/responsive-web-design/" target="_blank" class="cert-btn">Get Certified →</a></div>
+      <div class="cert-card"><div class="cert-issuer">Scrimba</div><div class="cert-name">Frontend Developer Career Path</div><div class="cert-desc">Comprehensive path covering React, JavaScript and modern frontend development — complementing AI-generated frontend code with solid fundamentals.</div><a href="https://scrimba.com/learn/frontend" target="_blank" class="cert-btn">View Course →</a></div>
+    </div>
+  </div>
+  <div class="sec fade-up">
+    <div class="sec-tag">Real-World Application</div>
+    <div class="sec-title">Industry Use Cases</div>
+    <div class="uc-grid">
+      <div class="uc-card"><div class="uc-icon">🚀</div><div class="uc-ind">Startups</div><div class="uc-title">Rapid MVP Development</div><div class="uc-desc">Founders use Bolt and Lovable to build MVPs in days instead of months, validate ideas before hiring engineers.</div></div>
+      <div class="uc-card"><div class="uc-icon">💼</div><div class="uc-ind">Freelancing</div><div class="uc-title">Client Web Projects at Scale</div><div class="uc-desc">Freelancers using vibe coding tools are delivering projects 5-10x faster, increasing their effective hourly rate dramatically.</div></div>
+      <div class="uc-card"><div class="uc-icon">🎯</div><div class="uc-ind">Product Management</div><div class="uc-title">Prototype Without Engineers</div><div class="uc-desc">PMs build interactive prototypes and demos without waiting for engineering resources, accelerating product decisions.</div></div>
+      <div class="uc-card"><div class="uc-icon">🏢</div><div class="uc-ind">Enterprise</div><div class="uc-title">Internal Tool Development</div><div class="uc-desc">Business teams build internal dashboards and tools without IT bottlenecks using AI coding assistants.</div></div>
+      <div class="uc-card"><div class="uc-icon">🎓</div><div class="uc-ind">Hackathons</div><div class="uc-title">Winning Hackathon Submissions</div><div class="uc-desc">Teams using vibe coding tools consistently outperform at hackathons by shipping fully functional products in 24 hours.</div></div>
+      <div class="uc-card"><div class="uc-icon">📱</div><div class="uc-ind">Marketing</div><div class="uc-title">Campaign Landing Pages</div><div class="uc-desc">Marketing teams spin up unique campaign landing pages in hours without involving development teams.</div></div>
+    </div>
+  </div>
+  <div class="sec fade-up">
+    <div class="sec-tag">Career Relevance</div>
+    <div class="sec-title">Roles This Prepares You For</div>
+    <div class="career-grid">
+      <div class="career-card"><div class="cc-icon">⚡</div><div class="cc-title">AI-Assisted Developer</div><div class="cc-sal">₹10–30 LPA</div></div>
+      <div class="career-card"><div class="cc-icon">🚀</div><div class="cc-title">Startup Founding Engineer</div><div class="cc-sal">₹8–25 LPA + equity</div></div>
+      <div class="career-card"><div class="cc-icon">🧩</div><div class="cc-title">Frontend AI Engineer</div><div class="cc-sal">₹12–35 LPA</div></div>
+      <div class="career-card"><div class="cc-icon">💡</div><div class="cc-title">Product Engineer</div><div class="cc-sal">₹15–40 LPA</div></div>
+      <div class="career-card"><div class="cc-icon">🎯</div><div class="cc-title">Technical Product Manager</div><div class="cc-sal">₹18–50 LPA</div></div>
+      <div class="career-card"><div class="cc-icon">💼</div><div class="cc-title">AI Solutions Freelancer</div><div class="cc-sal">₹5–15K/project</div></div>
+    </div>
+  </div>
+  <div class="next-cta fade-up">
+    <div class="next-cta-text">
+      <div class="next-label">Up Next · Module 04</div>
+      <div class="next-title">Git, GitHub & Copilot —<br>Collaborate Like a Pro</div>
+    </div>
+    <a href="git-github.html" class="next-btn">Next Module →</a>
+  </div>
+</div>
+<footer><strong>AI Ready Engineer</strong><span>Module 03 of 09 · Phase 2 · 18 Hours · Vibe Coding</span></footer>
+<script>
+const obs=new IntersectionObserver((entries)=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);obs.unobserve(e.target);}});},{threshold:0.07});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
