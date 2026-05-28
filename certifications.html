@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certifications — AI Ready Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#f8fafc;--surface:#fff;--ink:#0f172a;--muted:#64748b;
+  --border:#e2e8f0;--radius:12px;--accent:#f59e0b;
+}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(15,23,42,.97);
+  backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.08);
+  padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:64px;}
+.back-btn{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.7);text-decoration:none;
+  font-size:13px;font-weight:600;padding:8px 16px;border-radius:8px;border:1px solid rgba(255,255,255,.15);
+  transition:all .2s;}
+.back-btn:hover{background:rgba(255,255,255,.1);color:#fff;}
+.nav-title{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:#fff;
+  display:flex;align-items:center;gap:8px;}
+.nav-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0f172a 0%,#1e1b4b 55%,#0f172a 100%);
+  padding:72px 48px 64px;position:relative;overflow:hidden;text-align:center;}
+.hero::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 55% at 50% 0%,rgba(245,158,11,.14) 0%,transparent 70%);}
+.hero::after{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 40% 40% at 80% 80%,rgba(167,139,250,.1) 0%,transparent 60%);}
+.hero-inner{position:relative;z-index:1;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;
+  background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);
+  color:#fbbf24;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  padding:7px 20px;border-radius:20px;margin-bottom:24px;}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:#f59e0b;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.3)}}
+.hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(36px,5.5vw,56px);font-weight:800;
+  line-height:1.05;letter-spacing:-.03em;color:#fff;margin-bottom:18px;}
+.hero h1 em{font-style:normal;background:linear-gradient(120deg,#f59e0b,#fde68a);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-size:16px;color:rgba(255,255,255,.65);max-width:640px;
+  margin:0 auto;line-height:1.7;}
+
+/* MAIN */
+main{max-width:1100px;margin:0 auto;padding:56px 24px 80px;}
+
+/* MODULE GROUP */
+.mod-group{margin-bottom:48px;}
+.mod-head{display:flex;align-items:center;gap:14px;margin-bottom:20px;
+  padding-bottom:14px;border-bottom:2px solid var(--border);}
+.mod-num{font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:800;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--accent);
+  background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);
+  padding:6px 12px;border-radius:6px;flex-shrink:0;}
+.mod-title{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:800;
+  letter-spacing:-.02em;color:var(--ink);flex:1;}
+.mod-count{font-size:12px;color:var(--muted);font-weight:600;}
+
+.cert-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.cert-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);
+  padding:24px;transition:all .2s;display:flex;flex-direction:column;}
+.cert-card:hover{border-color:var(--accent);box-shadow:0 8px 28px rgba(245,158,11,.08);transform:translateY(-2px);}
+.cert-issuer{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.cert-issuer::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;
+  background:var(--accent);}
+.cert-name{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:800;
+  color:var(--ink);line-height:1.3;margin-bottom:10px;}
+.cert-desc{font-size:12.5px;color:var(--muted);line-height:1.6;margin-bottom:16px;flex:1;}
+.cert-btn{display:inline-flex;align-items:center;gap:8px;background:#0f172a;color:#fff;
+  padding:10px 18px;border-radius:8px;text-decoration:none;font-size:12px;font-weight:700;
+  letter-spacing:.03em;transition:all .2s;align-self:flex-start;}
+.cert-btn:hover{background:var(--accent);color:#0f172a;}
+.cert-btn .arr{transition:transform .2s;}
+.cert-btn:hover .arr{transform:translateX(3px);}
+
+/* EMPTY MODULE STATE */
+.cert-empty{background:rgba(245,158,11,.04);border:1.5px dashed rgba(245,158,11,.25);
+  border-radius:var(--radius);padding:20px 24px;font-size:13px;color:var(--muted);
+  display:flex;align-items:center;gap:12px;}
+.cert-empty::before{content:'⏳';font-size:18px;}
+
+/* NOTE BANNER */
+.note-banner{background:linear-gradient(135deg,#fef3c7 0%,#fde68a 100%);
+  border:1.5px solid rgba(245,158,11,.3);border-radius:var(--radius);
+  padding:18px 24px;margin-bottom:40px;display:flex;align-items:center;gap:14px;}
+.note-icon{font-size:22px;flex-shrink:0;}
+.note-text{font-size:13.5px;color:#78350f;line-height:1.55;}
+.note-text strong{color:#0f172a;}
+
+/* FOOTER */
+footer{background:#0f172a;color:rgba(255,255,255,.55);padding:30px 48px;
+  text-align:center;font-size:13px;}
+footer strong{display:block;font-family:'Space Grotesk',sans-serif;font-size:16px;
+  font-weight:800;color:#fff;margin-bottom:4px;}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{opacity:0;}.fade-up.visible{animation:fadeUp .5s cubic-bezier(.34,1.2,.64,1) forwards;}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:0 20px;}
+  .hero{padding:60px 24px 56px;}
+  main{padding:40px 18px 70px;}
+  .cert-grid{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  nav{padding:0 14px;height:58px;}
+  .nav-title{font-size:12px;}
+  .back-btn{padding:6px 10px;font-size:12px;}
+  .hero{padding:44px 18px 42px;}
+  .hero-badge{font-size:10px;padding:6px 16px;}
+  main{padding:30px 14px 50px;}
+  .cert-card{padding:20px;}
+  .mod-head{flex-wrap:wrap;gap:10px;}
+  .mod-title{font-size:18px;}
+  .note-banner{padding:14px 18px;gap:10px;}
+  .note-text{font-size:12.5px;}
+  footer{padding:22px 18px;}
+}
+
+/* Hover polish (matches main page sky theme) */
+.cert-card{cursor:default;}
+.cert-card .cert-issuer::before{transition:transform .25s,box-shadow .25s;}
+.cert-card:hover .cert-issuer::before{transform:scale(1.4);box-shadow:0 0 8px rgba(245,158,11,.7);}
+
+/* PRINT */
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  body{background:#fff;font-size:11pt;}
+  nav,.fade-up{opacity:1!important;animation:none!important;}
+  nav{position:static;}
+  .hero{padding:24px;page-break-after:avoid;}
+  main{padding:20px 16px;max-width:none;}
+  .mod-group{page-break-inside:avoid;margin-bottom:24px;}
+  .cert-card{break-inside:avoid;page-break-inside:avoid;box-shadow:none!important;transform:none!important;}
+  a{text-decoration:none;color:inherit;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="back-btn">← Back to Curriculum</a>
+  <div class="nav-title"><span class="nav-dot"></span>Certifications · Trainer Brochure</div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge"><span class="hero-badge-dot"></span>10 Industry Certifications · Free to Earn</div>
+    <h1>Earn <em>Industry-Recognized</em><br>Certifications</h1>
+    <p class="hero-sub">A curated list of free, official certifications from Microsoft, Anthropic, Google and more — mapped to each module of the AI Ready Engineer program. Complete them alongside your learning to strengthen your portfolio.</p>
+  </div>
+</section>
+
+<main>
+
+  <div class="note-banner fade-up">
+    <span class="note-icon">📌</span>
+    <div class="note-text"><strong>Trainer note:</strong> Encourage learners to complete the certification for the module they just finished — it locks in the concepts and gives them a credential to display on their resume and LinkedIn profile.</div>
+  </div>
+
+  <!-- MODULE 01 — PROMPT ENGINEERING -->
+  <div class="mod-group fade-up">
+    <div class="mod-head">
+      <span class="mod-num">Module 01</span>
+      <div class="mod-title">Prompt Engineering</div>
+      <span class="mod-count">3 Certifications</span>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <div class="cert-issuer">Microsoft Learn</div>
+        <div class="cert-name">Create Prompts for Generative AI Tools</div>
+        <div class="cert-desc">Official Microsoft module covering prompt design, prompt patterns, refinement techniques and best practices for working with generative AI tools. Free and self-paced with a completion badge.</div>
+        <a href="https://learn.microsoft.com/en-us/training/modules/create-prompts-for-generative-ai-training-tools/" target="_blank" rel="noopener" class="cert-btn">Get Certified <span class="arr">→</span></a>
+      </div>
+      <div class="cert-card">
+        <div class="cert-issuer">Google · Exceed LMS</div>
+        <div class="cert-name">Gemini Certification for Students</div>
+        <div class="cert-desc">Official Google student certification for using Gemini effectively — covers prompt design, multimodal capabilities and integrating Gemini into productivity workflows. Free for students.</div>
+        <a href="https://edu.exceedlms.com/student/path/1817885-gemini-certification-for-students" target="_blank" rel="noopener" class="cert-btn">Get Certified <span class="arr">→</span></a>
+      </div>
+      <div class="cert-card">
+        <div class="cert-issuer">Google Skills</div>
+        <div class="cert-name">Google Skills AI Learning Path</div>
+        <div class="cert-desc">Google's official skills path covering AI fundamentals, prompting and productivity. A foundational credential that complements the prompt engineering module.</div>
+        <a href="https://www.skills.google/paths/118" target="_blank" rel="noopener" class="cert-btn">Get Certified <span class="arr">→</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 02 — AI TOOLS -->
+  <div class="mod-group fade-up">
+    <div class="mod-head">
+      <span class="mod-num">Module 02</span>
+      <div class="mod-title">AI Tools</div>
+      <span class="mod-count">1 Certification</span>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <div class="cert-issuer">Anthropic</div>
+        <div class="cert-name">AI Fluency for Students</div>
+        <div class="cert-desc">Anthropic's official AI fluency course — teaches how to use Claude and other modern AI tools effectively, responsibly and productively. Pairs perfectly with the AI Tools module.</div>
+        <a href="https://anthropic.skilljar.com/ai-fluency-for-students" target="_blank" rel="noopener" class="cert-btn">Get Certified <span class="arr">→</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 03 — VIBE CODING -->
+  <div class="mod-group fade-up">
+    <div class="mod-head">
+      <span class="mod-num">Module 03</span>
+      <div class="mod-title">Vibe Coding</div>
+      <span class="mod-count">2 Certifications</span>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <div class="cert-issuer">Microsoft Learn</div>
+        <div class="cert-name">Introduction to Vibe Coding</div>
+        <div class="cert-desc">Microsoft's official module on AI-assisted "vibe coding" — building software through natural-language conversation with AI. Free and self-paced with a completion badge.</div>
+        <a href="https://learn.microsoft.com/en-us/training/modules/introduction-vibe-coding/" target="_blank" rel="noopener" class="cert-btn">Get Certified <span class="arr">→</span></a>
+      </div>
+      <div class="cert-card">
+        <div class="cert-issuer">Anthropic</div>
+        <div class="cert-name">Claude Code in Action</div>
+        <div class="cert-desc">Anthropic's official course on using Claude Code for real-world software development — covers the CLI, agentic workflows and building features end-to-end with AI.</div>
+        <a href="https://anthropic.skilljar.com/claude-code-in-action" target="_blank" rel="noopener" class="cert-btn">Get Certified <span class="arr">→</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 04 — GIT, GITHUB & COPILOT -->
+  <div class="mod-group fade-up">
+    <div class="mod-head">
+      <span class="mod-num">Module 04</span>
+      <div class="mod-title">Git, GitHub & Copilot</div>
+      <span class="mod-count">1 Certification</span>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <div class="cert-issuer">Microsoft · GitHub</div>
+        <div class="cert-name">GitHub Copilot Certification</div>
+        <div class="cert-desc">The official GitHub Copilot certification — covers Copilot completions, Copilot Chat, security considerations and responsible AI usage in coding. Industry-recognized credential with a practice assessment.</div>
+        <a href="https://learn.microsoft.com/en-us/credentials/certifications/github-copilot/?practice-assessment-type=certification" target="_blank" rel="noopener" class="cert-btn">Get Certified <span class="arr">→</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 06 — AI API INTEGRATION -->
+  <div class="mod-group fade-up">
+    <div class="mod-head">
+      <span class="mod-num">Module 06</span>
+      <div class="mod-title">AI API Integration</div>
+      <span class="mod-count">1 Certification</span>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <div class="cert-issuer">Anthropic</div>
+        <div class="cert-name">Claude with the Anthropic API</div>
+        <div class="cert-desc">Anthropic's official course on integrating Claude into applications via the API — covers chat completions, system prompts, streaming, tool use and production patterns.</div>
+        <a href="https://anthropic.skilljar.com/claude-with-the-anthropic-api" target="_blank" rel="noopener" class="cert-btn">Get Certified <span class="arr">→</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 07 — AI AGENTS -->
+  <div class="mod-group fade-up">
+    <div class="mod-head">
+      <span class="mod-num">Module 07</span>
+      <div class="mod-title">AI Agents</div>
+      <span class="mod-count">2 Certifications</span>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <div class="cert-issuer">Anthropic</div>
+        <div class="cert-name">Introduction to Agent Skills</div>
+        <div class="cert-desc">Anthropic's official course on building agent skills — modular capabilities that agents can use to solve tasks autonomously. Foundational for advanced agentic AI development.</div>
+        <a href="https://anthropic.skilljar.com/introduction-to-agent-skills" target="_blank" rel="noopener" class="cert-btn">Get Certified <span class="arr">→</span></a>
+      </div>
+      <div class="cert-card">
+        <div class="cert-issuer">Anthropic</div>
+        <div class="cert-name">Introduction to Model Context Protocol (MCP)</div>
+        <div class="cert-desc">Anthropic's official course on MCP — the open standard for connecting AI models to tools and data sources. Essential for building production-grade agentic systems.</div>
+        <a href="https://anthropic.skilljar.com/introduction-to-model-context-protocol" target="_blank" rel="noopener" class="cert-btn">Get Certified <span class="arr">→</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="note-banner fade-up" style="background:linear-gradient(135deg,#e0e7ff 0%,#c7d2fe 100%);border-color:rgba(99,102,241,.35);">
+    <span class="note-icon">💡</span>
+    <div class="note-text" style="color:#3730a3;"><strong>Modules 05 (API Creation), 08 (AI Security) and 09 (LLM Creation):</strong> Certifications will be added as soon as the official links are confirmed.</div>
+  </div>
+
+</main>
+
+<footer>
+  <strong>AI Ready Engineer · Trainer Brochure</strong>
+  <span>Industry-Oriented · Placement-Focused · 9 Modules · 192 Hours · 5 Phases</span>
+</footer>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

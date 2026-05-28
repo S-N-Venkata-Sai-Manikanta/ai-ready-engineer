@@ -21,8 +21,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(15,23,42,.97);backdrop-fil
   transition:all .2s;letter-spacing:.01em;}
 .back-btn:hover{background:rgba(255,255,255,.1);color:#fff;}
 .nav-mod{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:#fff;
-  display:flex;align-items:center;gap:8px;}
-.nav-dot{width:8px;height:8px;border-radius:50%;background:var(--ph-accent);}
+  display:flex;align-items:center;gap:8px;}.nav-right{display:flex;align-items:center;gap:12px;}.cert-nav-link{display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,.8);text-decoration:none;font-size:12px;font-weight:700;padding:7px 12px;border-radius:8px;border:1px solid rgba(255,255,255,.18);transition:all .2s;}.cert-nav-link:hover{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.4);}.nav-dot{width:8px;height:8px;border-radius:50%;background:var(--ph-accent);}
 
 .hero{background:linear-gradient(135deg,var(--ph-bg) 0%,var(--ph-mid) 60%,var(--ph-bg) 100%);
   padding:72px 48px 64px;position:relative;overflow:hidden;}
@@ -179,6 +178,8 @@ footer strong{display:block;font-family:'Space Grotesk',sans-serif;font-size:16p
 }
 
 /* PRINT — trainer handout */
+
+.mod-nav-strip{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);padding:20px 22px;margin-bottom:30px;}.mod-nav-label{font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}.mod-nav-row{display:grid;grid-template-columns:repeat(9,1fr);gap:6px;}.mod-nav-chip{text-decoration:none;color:var(--ink);background:var(--bg);border:1.5px solid var(--border);border-radius:8px;padding:10px 4px;text-align:center;transition:all .2s;display:block;}.mod-nav-chip:hover{border-color:var(--ph-accent);background:rgba(245,158,11,.04);transform:translateY(-2px);}.mod-nav-chip.active{background:var(--ph-bg);color:#fff;border-color:var(--ph-accent);box-shadow:0 4px 14px rgba(0,0,0,.12);}.mn-num{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:800;line-height:1;}.mn-name{font-size:9.5px;font-weight:600;color:var(--muted);margin-top:5px;line-height:1.2;letter-spacing:.02em;}.mod-nav-chip.active .mn-name{color:rgba(255,255,255,.65);}@media(max-width:768px){.mod-nav-row{grid-template-columns:repeat(3,1fr);}}
 @media print{
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
   body{background:#fff;font-size:11pt;line-height:1.5;}
@@ -199,7 +200,7 @@ footer strong{display:block;font-family:'Space Grotesk',sans-serif;font-size:16p
 
 <nav>
   <a href="../index.html" class="back-btn">← Back to Curriculum</a>
-  <div class="nav-mod"><span class="nav-dot"></span>Module 01 — Prompt Engineering</div>
+  <div class="nav-right"><a href="../certifications.html" class="cert-nav-link">★ Certifications</a><div class="nav-mod"><span class="nav-dot"></span>Module 01 — Prompt Engineering</div></div>
 </nav>
 
 <section class="hero">
@@ -216,7 +217,6 @@ footer strong{display:block;font-family:'Space Grotesk',sans-serif;font-size:16p
         <div class="stat-pill"><span class="sn">18</span> Hours</div>
         <div class="stat-pill"><span class="sn">6</span> Topics</div>
         <div class="stat-pill"><span class="sn">2</span> Projects</div>
-        <div class="stat-pill"><span class="sn">7</span> Sessions</div>
       </div>
     </div>
     <div class="hero-num-bg">01</div>
@@ -572,7 +572,9 @@ footer strong{display:block;font-family:'Space Grotesk',sans-serif;font-size:16p
   </div>
 
   <!-- NEXT MODULE -->
-  <div class="next-cta fade-up">
+    <div class="mod-nav-strip fade-up"><div class="mod-nav-label">All Modules — Jump to</div><div class="mod-nav-row"><a href="#" class="mod-nav-chip active"><div class="mn-num">01</div><div class="mn-name">Prompt</div></a><a href="ai-tools.html" class="mod-nav-chip"><div class="mn-num">02</div><div class="mn-name">Tools</div></a><a href="vibe-coding.html" class="mod-nav-chip"><div class="mn-num">03</div><div class="mn-name">Vibe</div></a><a href="git-github.html" class="mod-nav-chip"><div class="mn-num">04</div><div class="mn-name">Git</div></a><a href="api-creation.html" class="mod-nav-chip"><div class="mn-num">05</div><div class="mn-name">APIs</div></a><a href="ai-api-integration.html" class="mod-nav-chip"><div class="mn-num">06</div><div class="mn-name">AI APIs</div></a><a href="ai-agents.html" class="mod-nav-chip"><div class="mn-num">07</div><div class="mn-name">Agents</div></a><a href="ai-security.html" class="mod-nav-chip"><div class="mn-num">08</div><div class="mn-name">Security</div></a><a href="llm-creation.html" class="mod-nav-chip"><div class="mn-num">09</div><div class="mn-name">LLM</div></a></div></div>
+
+<div class="next-cta fade-up">
     <div class="next-cta-text">
       <div class="next-label">Up Next · Module 02</div>
       <div class="next-title">AI Tools — Apply Your Prompts<br>in Real-World Platforms</div>
